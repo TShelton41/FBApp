@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { TextInput, Button, List } from "react-native-paper";
+import { auth } from "../firebaseConfig";
 
 export default function HomeScreen({ navigation }) {
   const [signInUserName, setSignInUserName] = useState();
@@ -23,70 +24,72 @@ export default function HomeScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.header}>Sign In</Text>
-        <TextInput
-          style={styles.inputs}
-          label="User Name"
-          onChangeText={setSignInUserName}
-          value={signInUserName}
-        />
-        <TextInput
-          style={styles.inputs}
-          secureTextEntry={true}
-          label="Password"
-          onChangeText={setSignInUserPW}
-          value={signInUserPW}
-        />
-        <Button onPress={signInUser} style={styles.button} mode="contained">
-          Sign In
-        </Button>
-      </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.header}>Sign In</Text>
+          <TextInput
+            style={styles.inputs}
+            label="User Name"
+            onChangeText={setSignInUserName}
+            value={signInUserName}
+          />
+          <TextInput
+            style={styles.inputs}
+            secureTextEntry={true}
+            label="Password"
+            onChangeText={setSignInUserPW}
+            value={signInUserPW}
+          />
+          <Button onPress={signInUser} style={styles.button} mode="contained">
+            Sign In
+          </Button>
+        </View>
 
-      <View>
-        <Text style={styles.header}>Create Account</Text>
-        <TextInput
-          onChangeText={setCreateUserFName}
-          style={styles.inputs}
-          label="First Name:"
-          value={createUserFName}
-        />
-        <TextInput
-          onChangeText={setCreateUserLName}
-          style={styles.inputs}
-          label="Last Name:"
-          value={createUserLName}
-        />
-        <TextInput
-          onChangeText={setCreateUserName}
-          style={styles.inputs}
-          label="User Name:"
-          value={createUserName}
-        />
-        <TextInput
-          onChangeText={setCreateUserPW}
-          style={styles.inputs}
-          secureTextEntry={true}
-          label="Password:"
-          value={createUserPW}
-        />
-        <Button onPress={createUser} style={styles.button} mode="contained">
-          Sign In
+        <View>
+          <Text style={styles.header}>Create Account</Text>
+          <TextInput
+            onChangeText={setCreateUserFName}
+            style={styles.inputs}
+            label="First Name:"
+            value={createUserFName}
+          />
+          <TextInput
+            onChangeText={setCreateUserLName}
+            style={styles.inputs}
+            label="Last Name:"
+            value={createUserLName}
+          />
+          <TextInput
+            onChangeText={setCreateUserName}
+            style={styles.inputs}
+            label="User Name:"
+            value={createUserName}
+          />
+          <TextInput
+            onChangeText={setCreateUserPW}
+            style={styles.inputs}
+            secureTextEntry={true}
+            label="Password:"
+            value={createUserPW}
+          />
+          <Button onPress={createUser} style={styles.button} mode="contained">
+            Sign In
+          </Button>
+        </View>
+        <Text>ComponentName</Text>
+        <Button
+          style={styles.button}
+          title="Go to Login"
+          onPress={() => {
+            navigation.navigate("login");
+          }}
+        >
+          {" "}
+          Go To Login
         </Button>
       </View>
-      <Text>ComponentName</Text>
-      <Button
-        style={styles.button}
-        title="Go to Login"
-        onPress={() => {
-          navigation.navigate("login");
-        }}
-      >
-        {" "}
-        Go To Login
-      </Button>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -105,5 +108,11 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     marginBottom: 20,
+    backgroundColor: "#0782F9",
+    width: "60%",
+    padding: 15,
+    borderRadius: 10,
+    alignItems: "center",
+    color: "#fff",
   },
 });
